@@ -6,7 +6,7 @@
 
     "modules-left": ["custom/apple", "hyprland/window"],
     "modules-center": [],
-    "modules-right": ["hyprland/workspaces", "pulseaudio", "network", "battery", "clock"],
+    "modules-right": ["hyprland/workspaces", "group/volume", "network", "battery", "clock"],
 
     "custom/apple": {
         "format": "",
@@ -24,15 +24,6 @@
         "format": "{id}",
         "on-click": "activate"
     },
-
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-muted": "󰝟",
-        "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "on-click": "pavucontrol",
-        "tooltip-format": "{volume}%"
-    },
-
     "network": {
         "format-wifi": "󰤨",
         "format-ethernet": "󰈀",
@@ -49,5 +40,29 @@
     "clock": {
         "format": "{:%a %b %d   %I:%M %p}",
         "tooltip-format": "<tt>{calendar}</tt>"
-    }
+    },
+    "group/volume": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 300,
+        "transition-left-to-right": false
+    },
+    "modules": ["pulseaudio", "pulseaudio/slider"]
+},
+
+"pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "tooltip-format": "{volume}%",
+    "scroll-step": 5,
+    "on-click": "~/.config/waybar/scripts/audio-menu.sh",
+    "on-click-right": "pavucontrol"
+},
+
+"pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+}
 }
