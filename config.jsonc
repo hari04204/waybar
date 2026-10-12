@@ -1,16 +1,53 @@
 {
     "layer": "top",
-    "modules-left": ["pulseaudio", "cava"],
-    "modules-center": ["clock","hyprland/workspaces", "clock#right"],
-    "modules-right": ["battery"],
-    "sway/window": {
-        "max-length": 50
+    "position": "top",
+    "height": 28,
+    "margin": 0,
+
+    "modules-left": ["custom/apple", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["hyprland/workspaces", "pulseaudio", "network", "battery", "clock"],
+
+    "custom/apple": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "hyprlauncher"
     },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "separate-outputs": true
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "on-click": "pavucontrol",
+        "tooltip-format": "{volume}%"
+    },
+
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format": "{essid} ({signalStrength}%)"
+    },
+
     "battery": {
         "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-charging": "{capacity}% 󰂄",
+        "format-icons": ["󰁺", "󰁼", "󰁿", "󰂁", "󰁹"]
     },
+
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%a %b %d   %I:%M %p}",
+        "tooltip-format": "<tt>{calendar}</tt>"
     }
 }
